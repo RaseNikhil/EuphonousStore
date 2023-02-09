@@ -1,23 +1,12 @@
-version: 2.1
+version 2.1
 
-# Define the jobs we want to run for this project
-jobs:
-  build:
-    docker:
-      - image: node:19
-    steps:
-      - checkout
-      - run: echo "this is the test job"
+jobs :
   test:
-    docker:
+    build:
       - image: node:19
     steps:
       - checkout
-      - run: echo "this is the test job"
-
-# Orchestrate our job run sequence
+      - run npm --version
 workflows:
-  build_and_test:
-    jobs:
-      - build
-      - test
+  test_deploy:
+     - test
